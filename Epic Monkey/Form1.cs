@@ -154,7 +154,8 @@ namespace CursorPositionMacro
             {
                 if (cl.X == CoordX && cl.Y == CoordY) return;
             }
-            CoordList.Add(new Coordinates("Coord #" + CoordIndex.ToString(), defPnt.X, defPnt.Y, CoordIndex));
+            Coordinates Coordinate = new Coordinates("Coord #" + CoordIndex.ToString(), defPnt.X, defPnt.Y, CoordIndex);
+            CoordList.Add(Coordinate);
             listBox1.DataSource = null; // refresh list box
             listBox1.DataSource = CoordList; // refresh list box
             listBox1.DisplayMember = "Label"; // set display member to list box
@@ -304,13 +305,29 @@ namespace CursorPositionMacro
         }
         private void OnExit(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
-
+        
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //e.Cancel = true;
-            //Hide();
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.ShowInTaskbar = false;
+                this.Hide();
+                // Minimized app set to default
+                if (ToggleSaveCoords) EnableSaveCoord(this, new EventArgs());
+            }
+        }
+
+        private void notifyIconTray_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void listBox1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

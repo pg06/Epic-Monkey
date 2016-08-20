@@ -92,6 +92,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(106, 56);
             this.listBox1.TabIndex = 4;
+            this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_RemoveSelectedItem);
             // 
             // statusStrip1
@@ -173,8 +174,9 @@
             // 
             this.notifyIconTray.ContextMenuStrip = this.contextTrayMenu;
             this.notifyIconTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconTray.Icon")));
-            this.notifyIconTray.Text = "Desktop Snow";
+            this.notifyIconTray.Text = "Epic Monkey Tray";
             this.notifyIconTray.Visible = true;
+            this.notifyIconTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconTray_MouseDoubleClick);
             this.notifyIconTray.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnTrayIcon);
             // 
             // contextTrayMenu
@@ -209,8 +211,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "EPIC Monkey";
             this.TopMost = true;
